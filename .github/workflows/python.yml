@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  CI:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,5 +28,7 @@ jobs:
       - name: Format code with Black
         run: poetry run black ./f1guru
 
-      - name: Analyze code with pylint
-        run: poetry run pylint $(git ls-files '*.py')
+      - name: Lint code with Flake8
+        uses: advanced-security/python-lint-code-scanning-action@v1.1.1
+        with:
+          linter: flake8
