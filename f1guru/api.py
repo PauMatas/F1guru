@@ -14,7 +14,7 @@ def answer(q: str):
     except Exception as e:  # TODO: Catch specific exception for problems with the chain
         raise HTTPException(
             status_code=404, detail="System is not capable to answer this question."
-        )
+        ) from e
 
 
 @app.get("/answer/mockup", methods=["GET"])
