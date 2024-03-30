@@ -15,3 +15,13 @@ def answer(q: str):
         raise HTTPException(
             status_code=404, detail="System is not capable to answer this question."
         )
+
+
+@app.get("/answer/mockup", methods=["GET"])
+def answer_mockup(q: str):
+    if not q:
+        raise HTTPException(status_code=400, detail="Missing question")
+
+    return {
+        "answer": "Fernando is faster than you. Can you confirm you understood this message?"
+    }
