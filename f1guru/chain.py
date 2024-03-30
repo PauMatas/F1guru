@@ -3,7 +3,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI
 
-from f1guru.database import get_schema
+from f1guru.database import get_schema, run_query
 
 
 class F1GuruChain:
@@ -34,7 +34,7 @@ SQL Response: {response}"""
         self.response_chain = (
             RunnablePassthrough.assign(query=self.sql_chain).assign(
                 schema=get_schema,
-                response=lambda vars: self.natural_language_to_sql(vars["query"]),
+                response=lambda vars: run_query(vars["query"]),
             )
             | prompt_response
             | self.llm
