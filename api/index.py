@@ -1,10 +1,15 @@
 from fastapi import FastAPI, HTTPException
-from f1guru import F1GuruChain
+from f1guru import F1GuruChain, MockUpChain
 
 app = FastAPI()
 
 
-@app.get("/answer", methods=["GET"])
+@app.get("/api/python")
+def hello_world():
+    return {"message": "Hello World"}
+
+
+@app.get("/api/answer")
 def answer(q: str):
     if not q:
         raise HTTPException(status_code=400, detail="Missing question")
@@ -17,11 +22,11 @@ def answer(q: str):
         ) from e
 
 
-@app.get("/answer/mockup", methods=["GET"])
+@app.get("/api/answer/mockup")
 def answer_mockup(q: str):
     if not q:
         raise HTTPException(status_code=400, detail="Missing question")
 
-    return {
-        "answer": "Fernando is faster than you. Can you confirm you understood this message?"
-    }
+    response = {"answer": MockUpChain().answer_question(q)}
+    print(response)
+    return response
