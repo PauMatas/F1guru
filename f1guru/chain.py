@@ -1,3 +1,8 @@
+"""
+This module defines the F1GuruChain class that chains together the OpenAI language model with the
+F1Guru database. 
+"""
+
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -7,6 +12,12 @@ from f1guru.database import get_schema, run_query
 
 
 class F1GuruChain:
+    """
+    A class that chains together the OpenAI language model with the F1Guru database allowing for
+    natural language queries to the database and responses to be generated from the database query
+    results.
+    """
+
     def __init__(self):
         self.llm = ChatOpenAI()
 
@@ -42,7 +53,13 @@ SQL Response: {response}"""
         )
 
     def natural_language_to_sql(self, question: str) -> str:
-        return self.sql_chain.run(question)
+        """
+        Convert a natural language question to a SQL query for the F1DB database.
+        """
+        return self.sql_chain.invoke({"question": question})
 
     def answer_question(self, question: str) -> str:
+        """
+        Answer a natural language question using a query to the F1DB database.
+        """
         return self.response_chain.invoke({"question": question})
