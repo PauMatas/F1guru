@@ -6,23 +6,10 @@ export interface SubmitButtonProps extends ButtonProps {
   isLoading?: boolean;
 }
 
-export const SubmitButton = React.forwardRef<
-  HTMLButtonElement,
-  SubmitButtonProps
->(({ isLoading = false }, ref) => {
+export const SubmitButton = React.forwardRef<HTMLButtonElement, SubmitButtonProps>(({ isLoading = false }, ref) => {
   return (
-    <Button
-      size="icon"
-      ref={ref}
-      type="submit"
-      disabled={isLoading}
-      aria-disabled={isLoading}
-    >
-      {isLoading ? (
-        <Loader2 size={16} className="animate-spin" />
-      ) : (
-        <CornerDownLeft size={16} className="-ml-px" />
-      )}
+    <Button size="icon" ref={ref} type="submit" disabled={isLoading} aria-disabled={isLoading}>
+      {isLoading ? <Loader2 size={16} className="animate-spin" /> : <CornerDownLeft size={16} className="-ml-px" />}
     </Button>
   );
 });

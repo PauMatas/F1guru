@@ -12,11 +12,7 @@ export const metadata = {
   description: "Get answers to all your F1 questions",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -30,12 +26,7 @@ export default function RootLayout({
           >
             <Navbar />
           </header>
-          <main
-            className={cn(
-              "min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto",
-              BODY_PADDING,
-            )}
-          >
+          <main className={cn("min-h-screen flex items-stretch flex-col pb-28 max-w-5xl mx-auto", BODY_PADDING)}>
             {children}
           </main>
         </Providers>

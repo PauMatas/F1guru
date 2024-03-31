@@ -11,10 +11,7 @@ export function QuestionForm({ initialPrompt }: QuestionFormProps) {
   const submitRef = useRef<React.ElementRef<"button">>(null);
 
   return (
-    <form
-      action={undefined}
-      className="bg-primary rounded-xl shadow-lg h-fit flex flex-row px-1 items-center w-full"
-    >
+    <form action={undefined} className="bg-primary rounded-xl shadow-lg h-fit flex flex-row px-1 items-center w-full">
       <input
         defaultValue={initialPrompt}
         type="text"

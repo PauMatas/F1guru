@@ -12,6 +12,9 @@
     "prepare": "husky",
     "format": "prettier --write ."
   },
+  "prettier": {
+    "printWidth": 120
+  },
   "dependencies": {
     "@prisma/client": "^5.11.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
