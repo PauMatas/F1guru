@@ -23,7 +23,7 @@ export function QuestionForm({ initialPrompt }: QuestionFormProps) {
           }
         }}
         placeholder="Who is the driver with more race starts?"
-        className="bg-transparent text-primary-foreground placeholder:text-primary-foreground/90 ring-0 outline-none resize-none py-2.5 px-2 font-mono text-sm h-10 w-full transition-all duration-300"
+        className="bg-transparent text-primary-foreground placeholder:text-primary-foreground/90 ring-0 outline-none resize-none py-2.5 px-2 font-mono text-sm min-h-10 w-full transition-all duration-300"
       />
       <SubmitButton ref={submitRef} />
     </form>
