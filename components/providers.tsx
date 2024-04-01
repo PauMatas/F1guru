@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "./ui/toaster";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient();
@@ -11,6 +12,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
       {/* @ts-ignore */}
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         {children}
+        <Toaster />
       </ThemeProvider>
     </QueryClientProvider>
   );

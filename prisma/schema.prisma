@@ -19,6 +19,6 @@ model Question {
   dataframe Json?
   error     String?
 
-  @@index([isFlagged, dataframe])
+  @@index([isFlagged])
   @@fulltext([prompt, answer])
 }
