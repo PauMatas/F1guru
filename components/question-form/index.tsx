@@ -19,7 +19,6 @@ export function QuestionForm({ initialPrompt }: QuestionFormProps) {
 
   const { mutate: createQuestion } = useMutation({
     mutationFn: async (payload: QuestionCreationRequest) => {
-      console.log("Creating question", payload);
       const { data } = await axios.post("/api/question/create", payload);
       return data; // question id
     },
@@ -40,7 +39,6 @@ export function QuestionForm({ initialPrompt }: QuestionFormProps) {
     const prompt = (data.get("prompt") as string | null)?.trim().replaceAll(":", "");
     if (!prompt) return; // no need to display an error message for blank prompts
     const response = await axios.get("/api/answer/mockup", { params: { q: prompt } });
-    console.log("Response", response.data);
 
     const payload: QuestionCreationRequest = {
       prompt,

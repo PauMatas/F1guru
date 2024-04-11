@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { QuestionGrid } from "../question-grid";
 import { QuestionCount } from "../question-count";
 import { QuestionForm } from "../question-form";
+import { Skeleton } from "../ui/skeleton";
 
 interface PageContentProps extends React.PropsWithChildren {
   prompt?: string;
@@ -22,7 +23,22 @@ export const PageContent = ({ children, prompt }: PageContentProps) => {
         </div>
       </div>
 
-      <Suspense>
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-items-stretch w-full">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <Skeleton
+                aria-hidden
+                key={index.toString()}
+                id={index.toString()}
+                className="h-11 px-4 py-2 rounded-md w-full"
+              >
+                <div className="w-full" />
+              </Skeleton>
+            ))}
+          </div>
+        }
+      >
         {/* @ts-ignore */}
         <QuestionGrid prompt={prompt} />
       </Suspense>
