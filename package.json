@@ -16,11 +16,10 @@
     "printWidth": 120
   },
   "dependencies": {
-    "@prisma/client": "^5.11.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-    "@tanstack/react-query": "^5.28.9",
+    "@tanstack/react-query": "^5.29.2",
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
@@ -37,7 +36,6 @@
     "next-themes": "^0.3.0",
     "postcss": "8.4.23",
     "prettier": "^3.2.5",
-    "prisma": "^5.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwind-merge": "^2.2.2",
