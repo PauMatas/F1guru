@@ -51,7 +51,7 @@ def answer_mockup(q: str):
 
 @app.get("/api/last_update")
 def last_update():
-    year, round_ = os.environ["LAST_F1DB_RELEASE"].split(".")
+    year, round_, _ = os.environ["LAST_F1DB_RELEASE"][1:].split(".")
     last_gp_name = run_query(
         f"SELECT short_name FROM race LEFT JOIN grand_prix gp ON grand_prix_id = gp.id WHERE year = {year} AND round = {round_}"
     )

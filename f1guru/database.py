@@ -1,5 +1,6 @@
 """This module provides functions to interact with the F1DB database."""
 
+import subprocess
 from typing import Any, Dict, Sequence
 import pymysql
 import requests
@@ -25,20 +26,6 @@ def get_db() -> SQLDatabase:
     db = SQLDatabase.from_uri(tidb_connection_string)
 
     return db
-
-
-def get_db_connection() -> pymysql.connections.Connection:
-    """Get a pymysql database connection to the F1DB database."""
-    return pymysql.connect(
-        host=os.environ.get("F1DB_HOST"),
-        port=os.environ.get("F1DB_PORT"),
-        user=os.environ.get("F1DB_USER"),
-        password=os.environ.get("F1DB_PASSWORD"),
-        database=os.environ.get("F1DB_DB_NAME"),
-        ssl_ca="/etc/ssl/cert.pem",
-        ssl_verify_cert=True,
-        ssl_verify_identity=True,
-    )
 
 
 def run_query(query: str) -> str | Sequence[Dict[str, Any]] | Result[Any]:
@@ -67,6 +54,9 @@ def check_for_new_release() -> None:
     if response.status_code == 200:
         latest_release = response.json()
         if os.environ.get("LAST_F1DB_RELEASE") != latest_release["tag_name"]:
+            print(
+                f"New release found. Rebuilding database from release {os.environ.get('LAST_F1DB_RELEASE')} to {latest_release['tag_name']}..."
+            )
             rebuild_db_from_release(latest_release)
             os.environ["LAST_F1DB_RELEASE"] = latest_release["tag_name"]
 
@@ -106,17 +96,7 @@ def download_file(url: str) -> str:
 
 def update_database(sql_file_path: str) -> None:
     """Update the F1DB database with the SQL file at the given path."""
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
+    # mysql -h {os.environ.get("F1DB_HOST")} -P {os.environ.get("F1DB_PORT")} -u {os.environ.get("F1DB_USER")} -p{os.environ.get("F1DB_PASSWORD")} {os.environ.get("F1DB_DB_NAME")} < {sql_file_path}
+    command = f"""mysql -h {os.environ.get("F1DB_HOST")} -P {os.environ.get("F1DB_PORT")} -u {os.environ.get("F1DB_USER")} -p{os.environ.get('F1DB_PASSWORD')} {os.environ.get("F1DB_DB_NAME")} < {sql_file_path}"""
 
-        with open(sql_file_path, "r") as f:
-            sql_script = f.read()
-
-        cursor.execute(sql_script)
-        connection.commit()
-    except pymysql.Error as e:
-        raise e
-    finally:
-        if connection:
-            connection.close()
+    subprocess.run(command, shell=True)
