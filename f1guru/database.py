@@ -15,11 +15,11 @@ load_dotenv()
 
 def get_db() -> SQLDatabase:
     """Get a SQLAlchemy database wrapper for the F1DB database."""
-    user = os.environ.get("TIDB_USER")
-    password = os.environ.get("TIDB_PASSWORD")
-    host = os.environ.get("TIDB_HOST")
-    port = os.environ.get("TIDB_PORT")
-    db_name = os.environ.get("TIDB_DB_NAME")
+    user = os.environ.get("F1DB_USER")
+    password = os.environ.get("F1DB_PASSWORD")
+    host = os.environ.get("F1DB_HOST")
+    port = os.environ.get("F1DB_PORT")
+    db_name = os.environ.get("F1DB_DB_NAME")
 
     tidb_connection_string = f"mysql+pymysql://{user}:{password}@{host}:{port}/{db_name}?ssl_ca=/etc/ssl/cert.pem&ssl_verify_cert=true&ssl_verify_identity=true"
     db = SQLDatabase.from_uri(tidb_connection_string)
@@ -30,11 +30,11 @@ def get_db() -> SQLDatabase:
 def get_db_connection() -> pymysql.connections.Connection:
     """Get a pymysql database connection to the F1DB database."""
     return pymysql.connect(
-        host=os.environ.get("TIDB_HOST"),
-        port=os.environ.get("TIDB_PORT"),
-        user=os.environ.get("TIDB_USER"),
-        password=os.environ.get("TIDB_PASSWORD"),
-        database=os.environ.get("TIDB_DB_NAME"),
+        host=os.environ.get("F1DB_HOST"),
+        port=os.environ.get("F1DB_PORT"),
+        user=os.environ.get("F1DB_USER"),
+        password=os.environ.get("F1DB_PASSWORD"),
+        database=os.environ.get("F1DB_DB_NAME"),
         ssl_ca="/etc/ssl/cert.pem",
         ssl_verify_cert=True,
         ssl_verify_identity=True,

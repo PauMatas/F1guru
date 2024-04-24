@@ -1,4 +1,4 @@
-import { QuestionCount } from "../question-count";
+import LastUpdate from "../last-update";
 import { QuestionForm } from "../question-form";
 
 interface PageContentProps extends React.PropsWithChildren {
@@ -12,7 +12,7 @@ export const PageContent = ({ prompt }: PageContentProps) => {
         <h1 className="font-medium text-4xl text-foreground mb-3 animate-in fade-in slide-in-from-bottom-3 duration-1000 ease-in-out">
           F1 Guru
         </h1>
-        <QuestionCount />
+        <LastUpdate />
 
         <QuestionForm initialPrompt={prompt} />
       </div>
