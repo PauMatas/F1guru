@@ -76,7 +76,8 @@ def rebuild_db_from_release(release_info: dict) -> None:
         update_database(join(dirname(__file__), "temp", "f1db-sql-mysql.sql"))
 
         for file in os.listdir(join(dirname(__file__), "temp")):
-            os.remove(join(dirname(__file__), "temp", file))
+            if file != ".gitkeep":
+                os.remove(join(dirname(__file__), "temp", file))
     elif len(asset) > 1:
         raise ValueError("Multiple assets found with the same name")
     else:
