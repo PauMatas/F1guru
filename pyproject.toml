@@ -3,6 +3,7 @@ name = "f1guru"
 version = "0.1.0"
 description = ""
 authors = ["Pau Matas <pmatasalbiol@gmail.com>"]
+license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -13,8 +14,21 @@ requests = "^2.31.0"
 pymysql = "^1.1.0"
 python-dotenv = "^1.0.1"
 ipykernel = "^6.29.4"
+fastapi = "^0.110.0"
+uvicorn = "^0.29.0"
+black = "^24.3.0"
+flake8-sarif-formatter = "^1.0.1"
+starlette = "^0.37.2"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+include = 'f1guru/.*\.py$'
+
+[tool.flake8]
+max-line-length = 120
