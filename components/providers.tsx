@@ -5,10 +5,13 @@ import { Toaster } from "./ui/toaster";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      {children}
-      <Toaster />
-    </ThemeProvider>
+    <>
+      {/* @ts-ignore */}
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        {children}
+        <Toaster />
+      </ThemeProvider>
+    </>
   );
 };
 
