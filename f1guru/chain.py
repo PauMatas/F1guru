@@ -63,3 +63,24 @@ SQL Response: {response}"""
         Answer a natural language question using a query to the F1DB database.
         """
         return self.response_chain.invoke({"question": question})
+
+
+class MockUpChain:
+    """
+    A class that mocks up the F1GuruChain class for testing
+    """
+
+    def natural_language_to_sql(self, question: str) -> str:
+        """
+        Mock up the F1GuruChain natural_language_to_sql method for testing
+        """
+        return "SELECT * FROM drivers WHERE name = 'Fernando Alonso'"
+
+    def answer_question(self, question: str) -> str:
+        """
+        Mock up the F1GuruChain answer_question method for testing
+        """
+        return (
+            "Fernando is faster than you. Can you confirm you understood this message?"
+            + question
+        )
