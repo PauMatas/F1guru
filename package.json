@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "fastapi-dev": "pip3 install pipenv -q && python3 -m pipenv install -q && python3 -m pipenv run uvicorn f1guru.api:app --reload",
+    "fastapi-dev": "pip3 install pipenv -q && python3 -m pipenv install -q && python3 -m pipenv run uvicorn api.index:app --reload",
     "next-dev": "next dev",
     "dev": "concurrently \"yarn run next-dev\" \"yarn run fastapi-dev\"",
     "build": "next build",

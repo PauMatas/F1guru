@@ -7,7 +7,6 @@ name = "pypi"
 langchain = "*"
 langchain-openai = "*"
 requests = "*"
-pymysql = "*"
 python-dotenv = "*"
 ipykernel = "*"
 fastapi = "*"
@@ -15,6 +14,7 @@ uvicorn = "*"
 black = "*"
 starlette = "*"
 flake8-sarif-formatter = "*"
+pymysql = "*"
 
 [dev-packages]
 

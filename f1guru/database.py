@@ -1,8 +1,7 @@
 """This module provides functions to interact with the F1DB database."""
 
 import subprocess
-from typing import Any, Dict, Sequence
-import pymysql
+from typing import Any, Dict, Sequence, Union
 import requests
 import os
 from os.path import join, dirname
@@ -28,7 +27,7 @@ def get_db() -> SQLDatabase:
     return db
 
 
-def run_query(query: str) -> str | Sequence[Dict[str, Any]] | Result[Any]:
+def run_query(query: str) -> Union[str, Sequence[Dict[str, Any]], Result[Any]]:
     """Run a query on the F1DB database and return the results."""
     db = get_db()
     return db.run(query)
@@ -60,7 +59,9 @@ def check_for_new_release() -> None:
             rebuild_db_from_release(latest_release)
             os.environ["LAST_F1DB_RELEASE"] = latest_release["tag_name"]
             dotenv_file = dotenv.find_dotenv()
-            dotenv.set_key(dotenv_file, "LAST_F1DB_RELEASE", os.environ["LAST_F1DB_RELEASE"])
+            dotenv.set_key(
+                dotenv_file, "LAST_F1DB_RELEASE", os.environ["LAST_F1DB_RELEASE"]
+            )
 
 
 def rebuild_db_from_release(release_info: dict) -> None:
