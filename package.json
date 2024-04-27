@@ -15,6 +15,9 @@
   "prettier": {
     "printWidth": 120
   },
+  "engines": {
+    "node": "^18.0.0"
+  },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
