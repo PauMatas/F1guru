@@ -8,10 +8,10 @@ import os
 from os.path import join, dirname
 import zipfile
 from langchain_community.utilities.sql_database import SQLDatabase
-from dotenv import load_dotenv
+import dotenv
 from sqlalchemy import Result
 
-load_dotenv()
+dotenv.load_dotenv()
 
 
 def get_db() -> SQLDatabase:
@@ -59,6 +59,8 @@ def check_for_new_release() -> None:
             )
             rebuild_db_from_release(latest_release)
             os.environ["LAST_F1DB_RELEASE"] = latest_release["tag_name"]
+            dotenv_file = dotenv.find_dotenv()
+            dotenv.set_key(dotenv_file, "LAST_F1DB_RELEASE", os.environ["LAST_F1DB_RELEASE"])
 
 
 def rebuild_db_from_release(release_info: dict) -> None:
