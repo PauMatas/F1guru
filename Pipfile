@@ -8,11 +8,10 @@ langchain = "*"
 langchain-openai = "*"
 requests = "*"
 python-dotenv = "*"
-fastapi = "*"
-uvicorn = "*"
 black = "*"
 flake8-sarif-formatter = "*"
 pymysql = "*"
+flask = "*"
 
 [dev-packages]
 
