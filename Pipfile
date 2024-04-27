@@ -11,7 +11,6 @@ python-dotenv = "*"
 fastapi = "*"
 uvicorn = "*"
 black = "*"
-starlette = "*"
 flake8-sarif-formatter = "*"
 pymysql = "*"
 
