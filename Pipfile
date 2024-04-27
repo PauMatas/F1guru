@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+langchain = "*"
+langchain-openai = "*"
+requests = "*"
+pymysql = "*"
+python-dotenv = "*"
+ipykernel = "*"
+fastapi = "*"
+uvicorn = "*"
+black = "*"
+starlette = "*"
+flake8-sarif-formatter = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+python_full_version = "3.9.19"
